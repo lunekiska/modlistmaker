@@ -22,6 +22,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import dev.kisca.modlistmaker.ListToClipboard;
+import dev.kisca.modlistmaker.config.Config;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.server.command.CommandManager;
@@ -32,17 +33,21 @@ public class CopyCommand implements Command<ServerCommandSource> {
     private static final CopyCommand CMD = new CopyCommand();
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-         dispatcher.register(CommandManager.literal("copy")
-                .requires(cs -> cs.hasPermissionLevel(0))
-                .then(CommandManager.argument("alphabetical", BoolArgumentType.bool())
-                        .executes(CMD)));
+        if (Config.makerTypes.commandsList = true) {
+            dispatcher.register(CommandManager.literal("lm-copy")
+                    .requires(cs -> cs.hasPermissionLevel(0))
+                    .then(CommandManager.argument("alphabetical", BoolArgumentType.bool())
+                            .executes(CMD)));
+        }
     }
 
     @Override
     public int run(CommandContext<ServerCommandSource> context) {
         boolean alphabetical = BoolArgumentType.getBool(context, "alphabetical");
 
-        ListToClipboard.copyList(alphabetical);
+        if (Config.makerTypes.commandsList = true) {
+            ListToClipboard.copyList(alphabetical);
+        }
 
         return SINGLE_SUCCESS;
     }

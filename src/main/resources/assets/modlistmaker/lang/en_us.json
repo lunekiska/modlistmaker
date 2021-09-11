@@ -1,2 +1,6 @@
 {
+  "text.autoconfig.modlistmaker.title": "Mod List Maker Config",
+  "text.autoconfig.modlistmaker.option.makerTypes" : "List Maker Types",
+  "text.autoconfig.modlistmaker.option.makerTypes.commandsList" : "List by commands",
+  "text.autoconfig.modlistmaker.option.makerTypes.onLoadList" : "List on load"
 }

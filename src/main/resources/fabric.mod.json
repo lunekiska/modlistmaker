@@ -20,9 +20,12 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.kisca.modlistmaker.ModListMaker"
     ],
     "client": [
+      "dev.kisca.modlistmaker.ModListMaker"
+    ],
+    "modmenu" : [
+      "dev.kisca.modlistmaker.integration.ModMenuIntegration"
     ]
   },
   "mixins": [

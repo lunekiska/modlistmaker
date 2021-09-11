@@ -19,9 +19,12 @@ package dev.kisca.modlistmaker;
 
 import dev.kisca.modlistmaker.command.CopyCommand;
 import dev.kisca.modlistmaker.command.SaveCommand;
+import dev.kisca.modlistmaker.config.Config;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
+import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 
 /**
@@ -32,15 +35,24 @@ import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
  * @since 1.0.0
  */
 @Environment(EnvType.CLIENT)
-public final class ModListMaker implements ModInitializer {
+public final class ModListMaker implements ClientModInitializer {
     public static final String NAMESPACE = "modlistmaker";
 
-    public void onInitialize() {
-        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
-            if (!dedicated) {
-                CopyCommand.register(dispatcher);
-                SaveCommand.register(dispatcher);
+    public void onInitializeClient() {
+
+        if (Config.makerTypes.commandsList = true) {
+            CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+                if (!dedicated) {
+                    CopyCommand.register(dispatcher);
+                    SaveCommand.register(dispatcher);
+                }
+            });
+        }
+
+        if (Config.makerTypes.onLoadList = true) {
+            ListToFile.saveList(true);
             }
-        });
+
+        AutoConfig.register(Config.class, Toml4jConfigSerializer::new);
     }
 }

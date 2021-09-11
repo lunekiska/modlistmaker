@@ -22,6 +22,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import dev.kisca.modlistmaker.ListToFile;
+import dev.kisca.modlistmaker.config.Config;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 
@@ -29,18 +30,22 @@ public class SaveCommand implements Command<ServerCommandSource> {
     private static final SaveCommand CMD = new SaveCommand();
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-        dispatcher.register(CommandManager.literal("save")
-                .requires(cs -> cs.hasPermissionLevel(0))
-                .then(CommandManager.argument("alphabetical", BoolArgumentType.bool())
-                        .executes(CMD)));
+        if (Config.makerTypes.commandsList = true) {
+            dispatcher.register(CommandManager.literal("lm-save")
+                    .requires(cs -> cs.hasPermissionLevel(0))
+                    .then(CommandManager.argument("alphabetical", BoolArgumentType.bool())
+                            .executes(CMD)));
+        }
     }
 
     @Override
     public int run(CommandContext<ServerCommandSource> context) {
         boolean alphabetical = BoolArgumentType.getBool(context, "alphabetical");
 
-        ListToFile.saveList(alphabetical);
+        if (Config.makerTypes.commandsList = true) {
+            ListToFile.saveList(alphabetical);
+        }
 
-        return SINGLE_SUCCESS;
-    }
+            return SINGLE_SUCCESS;
+        }
 }

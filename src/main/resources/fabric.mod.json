@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "modlistmaker",
+  "version": "${version}",
+  "name": "Mod List Maker",
+  "description": "Mod list maker and copy for Fabric/Quilt 1.17+.",
+  "authors": [
+    "Lunkiska"
+  ],
+  "contributors": [
+
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/modlistmaker",
+    "sources": "https://github.com/lunekiska/modlistmaker.git",
+    "issues": "https://github.com/lunekiska/modlistmaker/issues"
+  },
+  "license": "LGPLv3",
+  "icon": "assets/modlistmaker/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.kisca.modlistmaker.ModListMaker"
+    ],
+    "client": [
+    ]
+  },
+  "mixins": [
+    "modlistmaker.mixins.json"
+  ],
+  "depends": {
+    "minecraft": ">=1.17",
+    "fabricloader": ">=0.11.3",
+    "fabric": ">=0.40.0",
+    "java": ">=16"
+  },
+  "suggests": {
+  }
+}

@@ -23,12 +23,6 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
 @me.shedaniel.autoconfig.annotation.Config(name = "modlistmaker")
 public class Config implements ConfigData {
-
-    @ConfigEntry.Gui.CollapsibleObject
-    public static MakerTypes makerTypes = new MakerTypes();
-
-    public static class MakerTypes {
-        public boolean commandsList = true;
-        public boolean onLoadList = false;
-    }
+        public static boolean commandsList = true;
+        public static boolean onLoadList = false;
 }

@@ -25,7 +25,7 @@ import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
 /**
  * Represents ModListMaker mod.
@@ -40,19 +40,22 @@ public final class ModListMaker implements ClientModInitializer {
 
     public void onInitializeClient() {
 
-        if (Config.makerTypes.commandsList = true) {
-            CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
-                if (!dedicated) {
+        AutoConfig.register(Config.class, Toml4jConfigSerializer::new);
+
+        AutoConfig.getConfigHolder(Config.class).getConfig();
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+
+            if (Config.commandsList = true) {
+                if (!environment.dedicated) {
                     CopyCommand.register(dispatcher);
                     SaveCommand.register(dispatcher);
                 }
-            });
-        }
-
-        if (Config.makerTypes.onLoadList = true) {
-            ListToFile.saveList(true);
             }
+        });
 
-        AutoConfig.register(Config.class, Toml4jConfigSerializer::new);
+        /*if (Config.onLoadList = true) {
+                ListToFile.saveList(true);
+            }*/
     }
 }

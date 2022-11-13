@@ -30,7 +30,7 @@ public class ListHelper {
         ArrayList<String> modStrings = new ArrayList<>();
 
         for (ModContainer mod : mods) {
-            modStrings.add(String.format("'%s' (%s:%s), %s", mod.getMetadata().getName(), mod.getMetadata().getVersion(), mod.getMetadata().getVersion(), System.lineSeparator()));
+            modStrings.add(String.format(mod.getMetadata().getName() + " ☛ " + mod.getMetadata().getId() + " : " + mod.getMetadata().getVersion() + System.lineSeparator()));
         }
 
         if (alphabetical)
